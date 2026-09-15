@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="action_button">i will greet you</button>
+    <p id="message">hallo</p>
+
+
+<script>
+    const message = document.getElementById("message")
+    const action_button = document.getElementById("action_button")
+
+    let namename
+
+    action_button.addEventListener("click",
+        function () {
+            namename = prompt("gimme your name, scallywag! YARRRRR!")
+            message.innerText = "Yarr name iss this: " + namename + " YARRR! SHIVER ME TINBERS!!!!!"
+        }
+    )
+</script>
+</body>
+</html>

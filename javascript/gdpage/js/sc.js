@@ -1,7 +1,7 @@
-const p = document.getElementById("print")
+const p = document.getElementById("down")
 
 p.addEventListener("click", 
     function () {
-        console.log("Muy bien, has pulsado un boton.")
+        open("https://godotengine.org/download/")
     }
 )

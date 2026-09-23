@@ -1,8 +1,22 @@
+body {
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+    color: rgb(255, 255, 255);
+    background-color: rgb(80, 80, 80);
+}
+
+
 h1 {
-    color: rgb(0, 4, 255);
+    color: rgb(85, 87, 218);
     font-weight: bold;
 }
 
-p {
-    color: rgb(0, 0, 0);
+.banner-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(34, 34, 34);
 }

@@ -1,11 +1,11 @@
-security_margin_x = 50
-security_margin_y = 110
+security_margin_x = 55
+security_margin_y = 60
 
-width = int(input("Give me the doors width:\n"))
-depth = int(input("Give me the desired depth:\n"))
-excess = int(input("Give me the desired excess:\n"))
+width = 825
+depth = 10
+excess = 2
 
-saw_diameter = 300
+saw_diameter = 232
 saw_radii = saw_diameter/2
 
 saw_margin_x = ((saw_radii**2) - (saw_radii-depth)**2)**(1/2)

@@ -12,7 +12,7 @@ $number_of_books = null;
 
 function get_input(string $message) {
     echo $message . " ";
-    return trim(fgets(STDIN));
+    return (fgets(STDIN));
 }
 
 function get_books_total(array $books) {
@@ -25,9 +25,13 @@ function get_books_total(array $books) {
     return $total_amount;
 }
 
-$buyer_name = (string)get_input("What is your name?:\n");
-$buyer_age = (int)get_input("How old are you?:\n");
-$number_of_books = (int)get_input("How many books do you wanna buy?:\n");
+$buyer_name = (string)get_input("What is the buyers name?:\n");
+$buyer_age = (int)get_input("How old is the buyer?:\n");
+
+$number_of_books = (int)get_input("How many books does the buyer want to purchase?:\n");
+define("DISCOUNT_THRESHOLD", (float)get_input(
+    "Enter the book amount from which the 5% discount is applied:\n"
+));
 
 for ($i = 0; $i < $number_of_books; $i++) {
     $book_title = (string)get_input("Book title:\n");
@@ -52,10 +56,6 @@ foreach ($books as $title => $price) {
 $total_with_iva = $total + ($total * IVA);
 
 echo "Total to pay with IVA: " . $total_with_iva . " €\n";
-
-define("DISCOUNT_THRESHOLD", (float)get_input(
-    "Enter the book amount from which the 5% discount is applied:\n"
-));
 
 if ($total_with_iva >= DISCOUNT_THRESHOLD) {
     $discount = $total_with_iva * DISCOUNT;

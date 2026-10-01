@@ -2,14 +2,13 @@
 $books = [];
 
 $total = 0;
-$amount_pass = 0;
 
-const PASS_DISCOUNT = 0.05;
+const DISCOUNT = 0.05;
 const IVA = 0.21;
 
-$librarian_name = null;
-$librarian_age = null;
-$amount_books = null;
+$buyer_name = null;
+$buyer_age = null;
+$number_of_books = null;
 
 function get_input(string $message) {
     echo $message . " ";
@@ -18,22 +17,51 @@ function get_input(string $message) {
 
 function get_books_total(array $books) {
     $total_amount = 0;
+
     foreach ($books as $name => $price) {
         $total_amount = $total_amount + (float)$price;
     }
+
     return $total_amount;
 }
 
-$librarian_name = (string)get_input("What is your name?:\n");
-$librarian_age = (int)get_input("How old are you?:\n");
-$amount_books = (int)get_input("How many books do you wanna buy?:\n");
+$buyer_name = (string)get_input("What is your name?:\n");
+$buyer_age = (int)get_input("How old are you?:\n");
+$number_of_books = (int)get_input("How many books do you wanna buy?:\n");
 
-for ($i = 0; $i < $amount_books; $i++) {
-    $book_name = get_input("Book name:");
-    $book_price = get_input("Book price:");
+for ($i = 0; $i < $number_of_books; $i++) {
+    $book_title = (string)get_input("Book title:\n");
+    $book_price = (float)get_input("Book price:\n");
 
-    $books[$book_name] = $book_price;
+    $books[$book_title] = $book_price;
 }
 
 $total = get_books_total($books);
-echo "Total cost: " . $total . "\n";
+
+echo "Books bougth:\n";
+
+foreach ($books as $title => $price) {
+    $price_with_iva = $price + ($price * IVA);
+
+    echo "Title: " . $title . "\n";
+    echo "Original price: " . $price . " €\n";
+    echo "Price with IVA: " . $price_with_iva . " €\n";
+    echo "\n";
+}
+
+$total_with_iva = $total + ($total * IVA);
+
+echo "Total to pay with IVA: " . $total_with_iva . " €\n";
+
+define("DISCOUNT_THRESHOLD", (float)get_input(
+    "Enter the book amount from which the 5% discount is applied:\n"
+));
+
+if ($total_with_iva >= DISCOUNT_THRESHOLD) {
+    $discount = $total_with_iva * DISCOUNT;
+    $total_with_discount = $total_with_iva - $discount;
+
+    echo "5% discount applied.\n";
+    echo "Total after discount: " . $total_with_discount . " €\n";
+}
+?>

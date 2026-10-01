@@ -11,7 +11,7 @@ $buyer_age = null;
 $number_of_books = null;
 
 function get_input(string $message) {
-    echo $message . " ";
+    echo $message;
     return (fgets(STDIN));
 }
 

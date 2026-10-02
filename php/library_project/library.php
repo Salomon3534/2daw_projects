@@ -30,7 +30,7 @@ $buyer_age = (int)get_input("How old is the buyer?:\n");
 
 $number_of_books = (int)get_input("How many books does the buyer want to purchase?:\n");
 define("DISCOUNT_THRESHOLD", (float)get_input(
-    "Enter the book amount from which the 5% discount is applied:\n"
+    "Enter the money amount from which the 5% discount is applied:\n"
 ));
 
 for ($i = 0; $i < $number_of_books; $i++) {

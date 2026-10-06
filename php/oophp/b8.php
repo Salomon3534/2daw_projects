@@ -130,39 +130,6 @@ function menu(): void {
     echo "Seleccione una opción: ";
 }
 
-
-do {
-    menu();
-    $opcion = trim((string) fgets(STDIN));
-
-    switch ($opcion) {
-        case "1":
-            $biblioteca->listarLibros();
-            break;
-
-        case "2":
-            procesarPrestamo($biblioteca);
-            break;
-
-        case "3":
-            procesarDevolucion($biblioteca);
-            break;
-
-        case "4":
-            $biblioteca->listarUsuarios();
-            break;
-
-        case "0":
-            echo "Saliendo..." . PHP_EOL;
-            break;
-
-        default:
-            echo "Opción inválida." . PHP_EOL;
-            break;
-    }
-} while ($opcion !== "0");
-
-
 function procesarPrestamo(Biblioteca $biblioteca): void {
     echo "Seleccione usuario:" . PHP_EOL;
     $biblioteca->listarUsuarios();
@@ -207,3 +174,35 @@ function procesarDevolucion(Biblioteca $biblioteca): void {
             : "El usuario no tenía este libro." . PHP_EOL;
     }
 }
+
+
+do {
+    menu();
+    $opcion = trim((string) fgets(STDIN));
+
+    switch ($opcion) {
+        case "1":
+            $biblioteca->listarLibros();
+            break;
+
+        case "2":
+            procesarPrestamo($biblioteca);
+            break;
+
+        case "3":
+            procesarDevolucion($biblioteca);
+            break;
+
+        case "4":
+            $biblioteca->listarUsuarios();
+            break;
+
+        case "0":
+            echo "Saliendo..." . PHP_EOL;
+            break;
+
+        default:
+            echo "Opción inválida." . PHP_EOL;
+            break;
+    }
+} while ($opcion !== "0");

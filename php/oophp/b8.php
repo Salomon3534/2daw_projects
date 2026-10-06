@@ -59,7 +59,7 @@ class Usuario {
         foreach ($this->librosPrestados as $key => $l) {
             if ($l === $libro) {
                 $l->devolver();
-                unset(key]);
+                unset(key);
                 return true;
             }
         }
@@ -93,12 +93,12 @@ class Biblioteca {
 
 
     public function getLibro(int $index): ?Libro {
-        return index] ?? null;
+        return index ?? null;
     }
 
 
     public function getUsuario(int $index): ?Usuario {
-        return index] ?? null;
+        return index ?? null;
     }
 
 
@@ -136,15 +136,31 @@ do {
     menu();
     $opcion = trim((string) fgets(STDIN));
 
+    switch ($opcion) {
+        case "1":
+            $biblioteca->listarLibros();
+            break;
 
-    match ($opcion) {
-        "1" => $biblioteca->listarLibros(),
-        "2" => procesarPrestamo($biblioteca),
-        "3" => procesarDevolucion($biblioteca),
-        "4" => $biblioteca->listarUsuarios(),
-        "0" => echo "Saliendo..." . PHP_EOL,
-        default => echo "Opción inválida." . PHP_EOL,
-    };
+        case "2":
+            procesarPrestamo($biblioteca);
+            break;
+
+        case "3":
+            procesarDevolucion($biblioteca);
+            break;
+
+        case "4":
+            $biblioteca->listarUsuarios();
+            break;
+
+        case "0":
+            echo "Saliendo..." . PHP_EOL;
+            break;
+
+        default:
+            echo "Opción inválida." . PHP_EOL;
+            break;
+    }
 } while ($opcion !== "0");
 
 
@@ -159,12 +175,12 @@ function procesarPrestamo(Biblioteca $biblioteca): void {
     $idLibro = (int) trim((string) fgets(STDIN)) - 1;
 
 
-    $usuario = idUsuario);
-    $libro = idLibro);
+    $usuario = idUsuario;
+    $libro = idLibro;
 
 
     if ($usuario && $libro) {
-        echo libro) 
+        echo libro
             ? "Libro prestado con éxito." . PHP_EOL 
             : "El libro ya está prestado." . PHP_EOL;
     }
@@ -182,12 +198,12 @@ function procesarDevolucion(Biblioteca $biblioteca): void {
     $idLibro = (int) trim((string) fgets(STDIN)) - 1;
 
 
-    $usuario = idUsuario);
-    $libro = idLibro);
+    $usuario = idUsuario;
+    $libro = idLibro;
 
 
     if ($usuario && $libro) {
-        echo libro) 
+        echo libro
             ? "Libro devuelto con éxito." . PHP_EOL 
             : "El usuario no tenía este libro." . PHP_EOL;
     }

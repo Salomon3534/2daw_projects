@@ -59,7 +59,7 @@ class Usuario {
         foreach ($this->librosPrestados as $key => $l) {
             if ($l === $libro) {
                 $l->devolver();
-                unset(key);
+                unset($key);
                 return true;
             }
         }
@@ -93,12 +93,11 @@ class Biblioteca {
 
 
     public function getLibro(int $index): ?Libro {
-        return index ?? null;
+        return $this->libros[$index] ?? null;
     }
-
-
+    
     public function getUsuario(int $index): ?Usuario {
-        return index ?? null;
+        return $this->usuarios[$index] ?? null;
     }
 
 
@@ -175,12 +174,12 @@ function procesarPrestamo(Biblioteca $biblioteca): void {
     $idLibro = (int) trim((string) fgets(STDIN)) - 1;
 
 
-    $usuario = idUsuario;
-    $libro = idLibro;
+    $usuario = $idUsuario;
+    $libro = $idLibro;
 
 
     if ($usuario && $libro) {
-        echo libro
+        echo $libro
             ? "Libro prestado con éxito." . PHP_EOL 
             : "El libro ya está prestado." . PHP_EOL;
     }
@@ -198,12 +197,12 @@ function procesarDevolucion(Biblioteca $biblioteca): void {
     $idLibro = (int) trim((string) fgets(STDIN)) - 1;
 
 
-    $usuario = idUsuario;
-    $libro = idLibro;
+    $usuario = $idUsuario;
+    $libro = $idLibro;
 
 
     if ($usuario && $libro) {
-        echo libro
+        echo $libro
             ? "Libro devuelto con éxito." . PHP_EOL 
             : "El usuario no tenía este libro." . PHP_EOL;
     }

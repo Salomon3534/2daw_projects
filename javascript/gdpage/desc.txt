@@ -1,1 +1,0 @@
-El cliente ejecuta el click del boton, que registra un mensaje en consola

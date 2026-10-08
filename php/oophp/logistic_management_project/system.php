@@ -15,7 +15,10 @@ class System {
         echo "(3) asignar paquete al repartidor\n";
         echo "(4) marcar paquete como entregado\n";
         echo "(5) listar paquetes y repartidores\n";
-        echo "(0) salir\n";
+
+        echo "\n";
+
+        echo "(x) salir\n";
     }
 
 
@@ -23,6 +26,10 @@ class System {
 
     function general_view_deliverymans() {}
     function general_view_packets() {}
+
+    function get_input(string $msg) {
+        
+    }
 }
 
 $system = new System([],[]);

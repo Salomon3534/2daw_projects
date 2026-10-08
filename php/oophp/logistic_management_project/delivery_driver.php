@@ -8,4 +8,9 @@ class DeliveryDriver {
     ) {}
 }
 
+function set_package(packet $pck) {
+    $packets[] = $pck
+    $pck ->
+}
+
 ?>

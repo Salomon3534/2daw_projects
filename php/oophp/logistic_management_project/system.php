@@ -11,17 +11,6 @@ class System {
 
 $system = new System();
 
-function assign_packet_to_deliveryman(Packet $pck, DeliveryDriver $dd) {
-    $dd -> $packets[] = $pck;
-    $pck -> $status = PacketStatus::IN_ROUTE;
-}
-
-function packet_delivered(Packet $pck) {
-    if ($pck -> $status === PacketStatus::IN_ROUTE) {
-        $pck->$status = PacketStatus::DELIVERED;
-    }
-}
-
 
 function general_view() {}
 

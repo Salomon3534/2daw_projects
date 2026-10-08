@@ -12,13 +12,24 @@ class Packet {
         public readonly string $destination,
         public PacketStatus $status = PacketStatus::PENDING
     ) {}
-}
 
-function assign_to_route() {
-    global $status;
-    if $status == PacketStatus::PENDING {
-        $status = PacketStatus::IN_ROUTE;
+    function assign_to_route() {
+        if ($this->status == PacketStatus::PENDING) {
+            $this->status = PacketStatus::IN_ROUTE;
+        }
+    }
+    
+    function mark_as_delivered() {
+        if ($this->status == PacketStatus::IN_ROUTE) {
+            $this->status = PacketStatus::DELIVERED;
+        }
+    }
+    
+    function get_state() {
+        return $this->status;
     }
 }
+
+
 
 ?>

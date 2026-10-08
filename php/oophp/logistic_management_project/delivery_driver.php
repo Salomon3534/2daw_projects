@@ -6,11 +6,17 @@ class DeliveryDriver {
         public readonly string $name,
         private array $packets = []
     ) {}
+
+    function set_package(packet $pck) {
+        $packets[] = $pck;
+        $pck ->assign_to_route();
+    }
+
+    function get_packages() {
+        return $this->packets;
+    }
 }
 
-function set_package(packet $pck) {
-    $packets[] = $pck
-    $pck ->
-}
+
 
 ?>

@@ -14,6 +14,11 @@ class Packet {
     ) {}
 }
 
-function assign_to_route()
+function assign_to_route() {
+    global $status;
+    if $status == PacketStatus::PENDING {
+        $status = PacketStatus::IN_ROUTE;
+    }
+}
 
 ?>

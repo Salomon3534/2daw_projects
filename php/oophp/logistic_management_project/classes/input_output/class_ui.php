@@ -1,12 +1,10 @@
 <?php
 class SystemUi {    
-    function print(string $msg) {
+    public function print(string $msg) {
         echo $msg.PHP_EOL;
     }
 
-
-
-    function main_menu() {
+    public function main_menu() {
         echo PHP_EOL;
         echo "MENU PRINCIPAL" . PHP_EOL;
         echo "(1) registrar paquete" . PHP_EOL;

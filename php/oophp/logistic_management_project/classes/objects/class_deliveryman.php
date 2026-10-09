@@ -7,12 +7,12 @@ class Deliveryman {
         private array $packets_codes = []
     ) {}
 
-    function set_package(packet $pck) {
+    public function set_package(packet $pck) {
         $packets_codes[] = $pck->code;
         $pck ->assign_to_route();
     }
 
-    function get_packages() {
+    public function get_packages() {
         return $this->packets_codes;
     }
 }

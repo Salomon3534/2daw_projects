@@ -5,18 +5,16 @@ include_once 'classes/input_output/class_ui.php';
 include_once 'classes/input_output/class_input.php';
 
 $manager = new SystemManager();
-$ui = new SystemUi();
-$io = new SystemIO();
 
 $choice = "";
 
 while ($choice !== "x") {
-    $ui->general_view();
+    $manager->ui->main_menu();
 
     $choice = "";
 
     while (!in_array($choice, ["1", "2", "3", "4", "5", "x"], true)) {
-        $choice = $io->ask("Elige qué acción deseas realizar: ");
+        $choice = $manager->io->ask("Elige qué acción deseas realizar: ");
     }
 
     switch ($choice) {

@@ -3,10 +3,10 @@ vocales = ["a","e","i","o","u"]
 
 char = "yolo"
 while (char != " "):
-    char = str(input("Dame un caracter:\n")).lower
+    char = str(input("Dame un caracter:\n")).lower()
 
     if char != " ":
-        if vocales.index(str(char)) > -1:
+        if char in vocales:
             print("VOCAL")
         else:
             print("no vocal")

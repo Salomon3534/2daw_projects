@@ -1,3 +1,4 @@
+
 data = {
     "america del norte": 24,
     "america central": 20,
@@ -6,17 +7,28 @@ data = {
     "asia": 18
 }
 
-wheigth = int(input("Wheigth of the packet (in Kg):\n"))
+try:
+    wheigth = int(input("Weight of the packet (in Kg):\n"))
 
-zones = data.keys()
+    if wheigth > 0:
+        zones = data.keys()
 
-i = 1
-for zone in zones:
-    print("(" + str(i) + ") " + str(zone))
-    i += 1
+        i = 1
+        for zone in zones:
+            print("(" + str(i) + ") " + str(zone))
+            i += 1
 
-wanted_zone = int(input("Wanted zone:\n"))
+        wanted_zone = int(input("Wanted zone:\n"))
 
-cost = wheigth * data[list(data.keys())[wanted_zone - 1]]
+        if wanted_zone <= 5 and wanted_zone >= 1:
+            cost = wheigth * data[list(data.keys())[wanted_zone - 1]]
 
-print("Total cost: " + str(cost) + " €")
+            print("Total cost: " + str(cost) + " €")
+        else:
+            print("Invalid zone!")
+
+    else:
+        print("Weight must be greater than 0!")
+
+except ValueError:
+    print("Please enter a valid number!")

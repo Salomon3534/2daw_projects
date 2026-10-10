@@ -8,7 +8,7 @@ $manager = new SystemManager();
 
 $choice = 0;
 
-while ($choice !== 6) {
+while ($choice !== 0) {
     $manager->ui->main_menu();
 
     $choice = $manager->io->ask("Elige qué acción deseas realizar:", InputType::INT, $manager->ui);
@@ -23,7 +23,7 @@ while ($choice !== 6) {
             break;
 
         case 3:
-            $manager->assign_packet_to_dman();
+            $manager->assign_packet_to_dman(
             break;
 
         case 4:
@@ -34,7 +34,7 @@ while ($choice !== 6) {
             $manager->general_view();
             break;
 
-        case 6:
+        case 0:
             $manager->ui->print("Has salido del programa");
             break;
 

@@ -15,5 +15,27 @@ class ManagerPacket {
 
         return $pck;
     }
+
+    private function get_packet_by_id(int $id) {
+        foreach ($this->packets as $p) {
+            if ($p->id === $id) {
+                return $p;
+            }
+        }
+        return null;
+    }
+
+    public function list_packets() {
+        $txt = [];
+        foreach ($this->packets as $p) {
+            $line = "ID: " . $p->id . " Direction: " . $p->direction;
+            $txt[] = $line;
+        }
+        return $txt;
+    }
+
+    public function mark_packet_as_delivered(int $pid) {
+        return $this->get_packet_by_id($pid)->mark_as_delivered();
+    }
 }
 ?>

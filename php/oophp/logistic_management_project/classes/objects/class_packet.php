@@ -22,7 +22,9 @@ class Packet {
     function mark_as_delivered() {
         if ($this->status == PacketStatus::IN_ROUTE) {
             $this->status = PacketStatus::DELIVERED;
+            return true;
         }
+        return false;
     }
     
     function get_state() {

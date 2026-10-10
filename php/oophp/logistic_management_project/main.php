@@ -1,10 +1,10 @@
 
 <?php
-include_once 'classes/managers/class_main_manager.php';
+include_once 'classes/managers/class_manager_manager.php';
 include_once 'classes/input_output/class_ui.php';
 include_once 'classes/input_output/class_input.php';
 
-$manager = new SystemManager();
+$manager = new ManagerManager();
 
 $choice = "";
 
@@ -13,33 +13,33 @@ while ($choice !== "x") {
 
     $choice = "";
 
-    while (!in_array($choice, ["1", "2", "3", "4", "5", "x"], true)) {
-        $choice = $manager->io->ask("Elige qué acción deseas realizar: ");
+    while (!in_array($choice, [1,2,3,4,5, 0], true)) {
+        $choice = $manager->io->ask("Elige qué acción deseas realizar:", InputType::INT, $manager->ui);
     }
 
     switch ($choice) {
-        case "1":
-            // TODO: Ejecutar la acción 1.
+        case 1:
+            $manager->create_package();
             break;
 
-        case "2":
-            // TODO: Ejecutar la acción 2.
+        case 2:
+            $manager->create_deliveryman();
             break;
 
-        case "3":
-            // TODO: Ejecutar la acción 3.
+        case 3:
+            $manager->assign_packet_to_dman();
             break;
 
-        case "4":
-            // TODO: Ejecutar la acción 4.
+        case 4:
+            $manager->mark_packet_as_delivered();
             break;
 
-        case "5":
-            // TODO: Ejecutar la acción 5.
+        case 5:
+            $manager->general_view();
             break;
 
-        case "x":
-            echo "Saliendo del programa..." . PHP_EOL;
+        case 0:
+            $manager->ui->print("Has salido del programa");
             break;
     }
 }

@@ -23,7 +23,7 @@ while ($choice !== 0) {
             break;
 
         case 3:
-            $manager->assign_packet_to_dman()
+            $manager->assign_packet_to_dman();
             break;
 
         case 4:

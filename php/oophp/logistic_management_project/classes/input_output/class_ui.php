@@ -1,24 +1,24 @@
-
 <?php
 
-include_once 'class_deliveryman.php';
-include_once 'class_packet.php';
+declare(strict_types=1);
+
+require_once __DIR__ . '/../managers/class_manager_dman.php';
+require_once __DIR__ . '/../managers/class_manager_packet.php';
 
 class SystemUi
 {
-
-    public function print($msg)
+    public function print(string|array $msg): void
     {
         if (is_array($msg)) {
             foreach ($msg as $line) {
                 echo $line . PHP_EOL;
             }
-        } else {
-            echo $msg . PHP_EOL;
+            return;
         }
+        echo $msg . PHP_EOL;
     }
 
-    public function main_menu()
+    public function main_menu(): void
     {
         $this->print("");
         $this->print("MENU PRINCIPAL");
@@ -27,28 +27,34 @@ class SystemUi
         $this->print("(3) asignar paquete al repartidor");
         $this->print("(4) marcar paquete como entregado");
         $this->print("(5) listar paquetes y repartidores");
+        $this->print("(6) salir");
         $this->print("");
-        $this->print("(x) salir");
     }
 
-    public function general_view(ManagerDman $mdmans, ManagerPacket $mpcks)
+    public function general_view(ManagerDman $mdmans, ManagerPacket $mpcks): void
     {
         $this->print("");
-        $this->print("GENERAL VIEW OF BOTH PACKETS AND DELIVERYMANS");
+        $this->print("VISTA GENERAL");
         $this->print("");
 
         $this->general_view_deliverymans($mdmans);
+        $this->print("");
         $this->general_view_packets($mpcks);
     }
 
-    public function general_view_deliverymans(ManagerDman $dmanager)
+    public function general_view_deliverymans(ManagerDman $dmanager): void
     {
-        $this->print($dmanager->list_dmans());
+        $lines = $dmanager->list_dmans();
+
+        $this->print("REPARTIDORES");
+        $this->print($lines === [] ? "    (no hay repartidores registrados)" : $lines);
     }
 
-    public function general_view_packets(ManagerPacket $pmanager)
+    public function general_view_packets(ManagerPacket $pmanager): void
     {
-        $this->print($pmanager->list_packets());
+        $lines = $pmanager->list_packets();
+
+        $this->print("PAQUETES");
+        $this->print($lines === [] ? "    (no hay paquetes registrados)" : $lines);
     }
 }
-?>

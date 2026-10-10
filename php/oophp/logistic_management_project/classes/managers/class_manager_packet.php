@@ -1,41 +1,42 @@
 <?php
 
-include_once 'class_packet.php';
+declare(strict_types=1);
+
+require_once __DIR__ . '/../objects/class_packet.php';
+
 class ManagerPacket {
-    public $packets = [];
+    private array $packets = [];
 
-    public function __construct() {
-        $packets = [];
-    }
-
-    public function create_package(string $id, string $direction) {
-        $pck = new Packet($id, $direction);
-
-        $packets[] = $pck;
-
+    public function create_package(string $code, string $destination): ?Packet {
+        if ($this->get_packet_by_code($code) !== null) {
+            return null;
+        }
+        $pck = new Packet($code, $destination);
+        $this->packets[] = $pck;
         return $pck;
     }
 
-    private function get_packet_by_id(int $id) {
+    public function get_packet_by_code(string $code): ?Packet {
         foreach ($this->packets as $p) {
-            if ($p->id === $id) {
+            if ($p->code === $code) {
                 return $p;
             }
         }
         return null;
     }
 
-    public function list_packets() {
+    public function list_packets(): array {
         $txt = [];
         foreach ($this->packets as $p) {
-            $line = "ID: " . $p->id . " Direction: " . $p->direction;
-            $txt[] = $line;
+            $txt[] = "Código: " . $p->code
+                . " | Destino: " . $p->destination
+                . " | Estado: " . $p->get_state()->label();
         }
         return $txt;
     }
 
-    public function mark_packet_as_delivered(int $pid) {
-        return $this->get_packet_by_id($pid)->mark_as_delivered();
+    public function mark_packet_as_delivered(string $code): bool {
+        $pck = $this->get_packet_by_code($code);
+        return $pck !== null && $pck->mark_as_delivered();
     }
 }
-?>

@@ -1,22 +1,22 @@
 <?php
 
-include_once 'class_deliveryman.php';
+declare(strict_types=1);
+
+require_once __DIR__ . '/../objects/class_deliveryman.php';
+
 class ManagerDman {
-    public $dmans = [];
+    private array $dmans = [];
 
-    public function __construct() {
-        $dmans = [];
-    }
-
-    public function create_dman(string $id, string $name) {
+    public function create_dman(int $id, string $name): ?Deliveryman {
+        if ($this->get_dman_by_id($id) !== null) {
+            return null;
+        }
         $dman = new Deliveryman($id, $name);
-
-        $dmans[] = $dman;
-
+        $this->dmans[] = $dman;
         return $dman;
     }
 
-    private function get_dman_by_id(string $id) {
+    public function get_dman_by_id(int $id): ?Deliveryman {
         foreach ($this->dmans as $dman) {
             if ($dman->id === $id) {
                 return $dman;
@@ -25,17 +25,27 @@ class ManagerDman {
         return null;
     }
 
-    public function list_dmans() {
+    public function list_dmans(): array {
         $txt = [];
         foreach ($this->dmans as $dman) {
-            $line = "ID: " . $dman->id . " Name: " . $dman->name;
-            $txt[] = $line;
+            $txt[] = "ID: " . $dman->id . " | Nombre: " . $dman->name;
+
+            $packages = $dman->get_packages();
+            if ($packages === []) {
+                $txt[] = "    (sin paquetes asignados)";
+                continue;
+            }
+            foreach ($packages as $p) {
+                $txt[] = "    - " . $p->code
+                    . " -> " . $p->destination
+                    . " [" . $p->get_state()->label() . "]";
+            }
         }
         return $txt;
     }
 
-    public function assign_packet_to_dman(string $packet_to_assign_id, string $dman_id) {
-        $this->get_dman_by_id($dman_id)->set_packet($packet_to_assign_id);
+    public function assign_packet_to_dman(Packet $pck, int $dman_id): bool {
+        $dman = $this->get_dman_by_id($dman_id);
+        return $dman !== null && $dman->set_package($pck);
     }
-} 
-?>
+}

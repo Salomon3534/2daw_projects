@@ -1,37 +1,46 @@
 <?php
 
+declare(strict_types=1);
+
 enum PacketStatus {
     case PENDING;
     case IN_ROUTE;
     case DELIVERED;
+
+    public function label(): string {
+        return match ($this) {
+            self::PENDING => 'Pendiente',
+            self::IN_ROUTE => 'En ruta',
+            self::DELIVERED => 'Entregado',
+        };
+    }
 }
 
 class Packet {
+    private PacketStatus $status = PacketStatus::PENDING;
+
     public function __construct(
         public readonly string $code,
-        public readonly string $destination,
-        public PacketStatus $status = PacketStatus::PENDING
+        public readonly string $destination
     ) {}
 
-    function assign_to_route() {
-        if ($this->status == PacketStatus::PENDING) {
-            $this->status = PacketStatus::IN_ROUTE;
+    public function assign_to_route(): bool {
+        if ($this->status !== PacketStatus::PENDING) {
+            return false;
         }
+        $this->status = PacketStatus::IN_ROUTE;
+        return true;
     }
-    
-    function mark_as_delivered() {
-        if ($this->status == PacketStatus::IN_ROUTE) {
-            $this->status = PacketStatus::DELIVERED;
-            return true;
+
+    public function mark_as_delivered(): bool {
+        if ($this->status !== PacketStatus::IN_ROUTE) {
+            return false;
         }
-        return false;
+        $this->status = PacketStatus::DELIVERED;
+        return true;
     }
-    
-    function get_state() {
+
+    public function get_state(): PacketStatus {
         return $this->status;
     }
 }
-
-
-
-?>

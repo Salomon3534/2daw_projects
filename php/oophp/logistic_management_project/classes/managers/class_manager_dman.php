@@ -33,12 +33,12 @@ class ManagerDman {
             $packages = $dman->get_packages();
             if ($packages === []) {
                 $txt[] = "    (sin paquetes asignados)";
-                continue;
-            }
-            foreach ($packages as $p) {
-                $txt[] = "    - " . $p->code
-                    . " -> " . $p->destination
-                    . " [" . $p->get_state()->label() . "]";
+            } else {
+                foreach ($packages as $p) {
+                    $txt[] = "    - " . $p->code
+                        . " -> " . $p->destination
+                        . " [" . $p->get_state()->label() . "]";
+                }
             }
         }
         return $txt;

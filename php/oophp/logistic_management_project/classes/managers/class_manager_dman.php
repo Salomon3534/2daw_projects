@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once __DIR__ . '/../objects/class_deliveryman.php';
+require_once __DIR__ . '/../objects/class_packet.php';
 
 class ManagerDman {
     private array $dmans = [];
@@ -35,9 +36,9 @@ class ManagerDman {
                 $txt[] = "    (sin paquetes asignados)";
             } else {
                 foreach ($packages as $p) {
-                    $txt[] = "    - " . $p->code
-                        . " -> " . $p->destination
-                        . " [" . $p->get_state()->label() . "]";
+                    $txt[] = "Código paquete: " . $p->code
+                        . " destino: " . $p->destination
+                        . " estado: " . $p->get_state()->label();
                 }
             }
         }

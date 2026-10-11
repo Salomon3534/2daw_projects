@@ -6,9 +6,9 @@ require_once __DIR__ . '/classes/managers/class_system_manager.php';
 
 $manager = new SystemManager();
 
-$choice = -1;
+$choice = 0;
 
-while ($choice !== 0) {
+while ($choice !== 6) {
     $manager->ui->main_menu();
 
     $choice = $manager->io->ask("Elige qué acción deseas realizar:", InputType::INT, $manager->ui);
@@ -34,7 +34,7 @@ while ($choice !== 0) {
             $manager->general_view();
             break;
 
-        case 0:
+        case 6:
             $manager->ui->print("Has salido del programa");
             break;
 

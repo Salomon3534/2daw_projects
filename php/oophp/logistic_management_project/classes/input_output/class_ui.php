@@ -27,7 +27,7 @@ class SystemUi
         $this->print("(3) asignar paquete al repartidor");
         $this->print("(4) marcar paquete como entregado");
         $this->print("(5) listar paquetes y repartidores");
-        $this->print("(6) salir");
+        $this->print("(0) salir");
         $this->print("");
     }
 

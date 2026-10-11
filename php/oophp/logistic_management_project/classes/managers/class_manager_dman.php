@@ -36,7 +36,7 @@ class ManagerDman {
                 $txt[] = "    (sin paquetes asignados)";
             } else {
                 foreach ($packages as $p) {
-                    $txt[] = "Código paquete: " . $p->code
+                    $txt[] = "  Código paquete: " . $p->code
                         . " destino: " . $p->destination
                         . " estado: " . $p->get_state()->label();
                 }

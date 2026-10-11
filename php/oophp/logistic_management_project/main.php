@@ -6,7 +6,7 @@ require_once __DIR__ . '/classes/managers/class_system_manager.php';
 
 $manager = new SystemManager();
 
-$choice = 0;
+$choice = -1;
 
 while ($choice !== 0) {
     $manager->ui->main_menu();

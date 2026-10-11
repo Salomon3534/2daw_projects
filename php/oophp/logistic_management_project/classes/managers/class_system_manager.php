@@ -25,8 +25,6 @@ class SystemManager {
     public function create_package(): void {
         $this->ui->print("REGISTRAR PAQUETE");
 
-        $this->ui->general_view_packets($this->mg_packets);
-
         $p_cod = $this->io->ask("Código del paquete:", InputType::STRING, $this->ui);
         $p_dir = $this->io->ask("Dirección de destino:", InputType::STRING, $this->ui);
 

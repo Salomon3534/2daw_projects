@@ -1,0 +1,42 @@
+services:
+  web:
+    image: php:apache
+    container_name: formulario_web
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: mysql:latest
+    container_name: formulario_db_server
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: formulario_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: admin
+    volumes:
+      - datos_mysql:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-proot123"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: formulario_phpmyadmin
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    depends_on:
+      - db
+
+volumes:
+  datos_mysql:

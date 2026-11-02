@@ -1,0 +1,35 @@
+.card {
+    text-shadow: 
+        5px 5px 5px black;
+    
+    border-style: solid;
+    border-width: 5px;
+}
+
+.card:nth-child(1) {
+    transform-origin: right top;
+    transform: rotate(-15deg);
+
+}
+
+.card:nth-child(2) {
+    text-shadow:
+        10px 10px 14px crimson;
+
+    transform-origin: left top;
+    transform: rotate(15deg) ;
+
+    translate: 0 300px;
+}
+
+.card:nth-child(3) {
+    text-shadow:
+        5px 5px 9px black,
+        10px 10px 14px crimson,
+        -15px -15px 20px royalblue;
+    
+    transform-origin: right top;
+    transform: rotate(-20deg);
+
+    translate: 0 600px;
+}

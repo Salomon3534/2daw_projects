@@ -1,3 +1,16 @@
-.card p {
-    text-shadow: 5px 5px 9px black;
+.card {
+    text-shadow: 
+        5px 5px 5px black;
+}
+
+.card:nth-child(2) {
+    text-shadow:
+        10px 10px 14px crimson;
+}
+
+.card:nth-child(3) {
+    text-shadow:
+        5px 5px 9px black,
+        10px 10px 14px crimson,
+        -15px -15px 20px royalblue;
 }

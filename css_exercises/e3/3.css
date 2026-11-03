@@ -1,0 +1,22 @@
+.tubes img {
+    width: 150px;
+    height: 150px;
+}
+
+.tubes {
+    display: grid;
+    grid-template-columns: repeat(3, 50px);
+    gap: 130px;
+}
+
+.card:nth-child(1) {
+    opacity: 0.3;
+}
+
+.card:nth-child(2) {
+    opacity: 0.6;
+}
+
+.card:nth-child(3) {
+    opacity: 0.9;
+}

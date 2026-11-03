@@ -8,9 +8,7 @@
 
 .card:nth-child(1) {
     transform-origin: right top;
-    transform: rotate(-15deg);
-
-    transform: skewX(10deg);
+    transform: rotate(-15deg) skewX(10deg);
 }
 
 .card:nth-child(2) {
@@ -18,11 +16,9 @@
         10px 10px 14px crimson;
 
     transform-origin: left top;
-    transform: rotate(15deg) ;
+    transform: rotate(15deg) skewY(20deg);
 
     translate: 0 300px;
-
-    transform: skewY(20deg);
 }
 
 .card:nth-child(3) {
@@ -32,9 +28,7 @@
         -15px -15px 20px royalblue;
     
     transform-origin: right top;
-    transform: rotate(-20deg);
+    transform: rotate(-20deg) skew(15deg 5deg);
 
     translate: 0 600px;
-
-    transform: skew(15deg 5deg);
 }
